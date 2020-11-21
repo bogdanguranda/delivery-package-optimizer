@@ -1,2 +1,4 @@
 .idea
+delivery-package-optimizer.iml
+.DS_Store
 *.class
