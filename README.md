@@ -29,7 +29,7 @@ To run this program or contribute follow the steps bellow.
 ## Installation
 
 #### 1. Use already built `.jar`:
-- go to this repo's Releases page and download the latest `.jar` file
+- go to this repo's [Releases](https://github.com/bogdanguranda/delivery-package-optimizer/releases) and download the latest `.jar` file
 - run the `.jar` like this (needs `Java 8` installed, change the jar name as needed):
    ```
   java -jar delivery-package-optimizer-1.0.jar "file-to-read-from.txt"
