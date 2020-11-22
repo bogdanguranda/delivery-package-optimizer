@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
 
 public class TestStandardFileParser {
 
+    private static final String TEST_RESOURCES_PATH = "src/test/resources/";
     private FileParser fileParser = new StandardFileParser();
 
     /**
@@ -18,7 +19,7 @@ public class TestStandardFileParser {
      */
     @Test(expected = FileNotFoundException.class)
     public void testFileMissingThrowsFileNotFoundException() throws FileNotFoundException, InvalidFileFormatException {
-        fileParser.parse("nonExistentFile.txt");
+        fileParser.parse(TEST_RESOURCES_PATH + "nonExistentFile.txt");
     }
 
     /**
@@ -26,7 +27,7 @@ public class TestStandardFileParser {
      */
     @Test(expected = InvalidFileFormatException.class)
     public void testEmptyFileThrowsInvalidFileContentException() throws FileNotFoundException, InvalidFileFormatException {
-        fileParser.parse("emptyFile.txt");
+        fileParser.parse(TEST_RESOURCES_PATH + "emptyFile.txt");
     }
 
     /**
@@ -34,7 +35,7 @@ public class TestStandardFileParser {
      */
     @Test(expected = InvalidFileFormatException.class)
     public void testWrongFileFormatThrowsInvalidFileContentException() throws FileNotFoundException, InvalidFileFormatException {
-        fileParser.parse("wrongFormatFile.txt");
+        fileParser.parse(TEST_RESOURCES_PATH + "wrongFormatFile.txt");
     }
 
     /**
@@ -42,14 +43,14 @@ public class TestStandardFileParser {
      */
     @Test
     public void testOKFileIsParsedCorrectly() throws FileNotFoundException, InvalidFileFormatException {
-        List<UseCase> parsedUseCases = fileParser.parse("rightFormatFile.txt");
+        List<UseCase> parsedUseCases = fileParser.parse(TEST_RESOURCES_PATH + "rightFormatFile.txt");
 
         assertNotNull(parsedUseCases);
         assertEquals(2, parsedUseCases.size());
 
         UseCase firstUseCase = parsedUseCases.get(0);
         assertNotNull(firstUseCase);
-        assertEquals(81, (double) firstUseCase.getWeightLimit());
+        assertEquals(81, firstUseCase.getWeightLimit(), 0.0);
         assertEquals(3, firstUseCase.getAllItems().size());
 
         Item firstUseCaseItem1 = firstUseCase.getAllItems().get(0);
@@ -69,7 +70,7 @@ public class TestStandardFileParser {
 
         UseCase secondUseCase = parsedUseCases.get(1);
         assertNotEquals(null, secondUseCase);
-        assertEquals(8, (double) secondUseCase.getWeightLimit());
+        assertEquals(8, secondUseCase.getWeightLimit(), 0.0);
         assertEquals(1, secondUseCase.getAllItems().size());
 
         Item secondUseCaseItem1 = secondUseCase.getAllItems().get(0);

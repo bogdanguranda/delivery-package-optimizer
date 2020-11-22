@@ -5,23 +5,20 @@ import com.bogdanguranda.deliverypackageoptimizer.model.Item;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class StandardFileParser implements FileParser {
 
-    private final ClassLoader classLoader = getClass().getClassLoader();
-
     public List<UseCase> parse(String fileName) throws FileNotFoundException, InvalidFileFormatException {
         List<UseCase> useCases = new ArrayList<>();
 
-        Scanner scanner = new Scanner(getFile(fileName));
-        while (scanner.hasNextLine()) {
-            useCases.add(parseLine(scanner.nextLine()));
+        try (Scanner scanner = new Scanner(getFile(fileName))) {
+            while (scanner.hasNextLine()) {
+                useCases.add(parseLine(scanner.nextLine()));
+            }
         }
-        scanner.close();
 
         if (useCases.size() == 0) {
             throw new InvalidFileFormatException();
@@ -30,12 +27,8 @@ public class StandardFileParser implements FileParser {
         return useCases;
     }
 
-    private File getFile(String fileName) throws FileNotFoundException {
-        URL filePath = classLoader.getResource(fileName);
-        if (filePath == null) {
-            throw new FileNotFoundException();
-        }
-        return new File(filePath.getFile());
+    private File getFile(String fileName) {
+        return new File(System.getProperty("user.dir") + "/" + fileName);
     }
 
     private UseCase parseLine(String rawUseCase) throws InvalidFileFormatException {
