@@ -7,17 +7,12 @@ import java.util.List;
 
 public class StandardOutputResultPrinter implements ResultPrinter {
 
-    /**
-     * Prints the resulted optimized package to the standard output.
-     *
-     * @param resultPackage the optimized package
-     */
     @Override
-    public void print(Package resultPackage) {
-        if (resultPackage == null || resultPackage.getItems().size() == 0) {
+    public void print(Package optimizedPackage) {
+        if (optimizedPackage == null || optimizedPackage.getItems().size() == 0) {
             System.out.println("-");
         } else {
-            List<Item> items = resultPackage.getItems();
+            List<Item> items = optimizedPackage.getItems();
             for (int i = 0; i < items.size() - 1; i++) {
                 System.out.print(items.get(i).getId() + ",");
             }

@@ -32,6 +32,12 @@ public class DefaultPackageOptimizer implements PackageOptimizer {
         return new Package(useCase.getWeightLimit(), bestFit);
     }
 
+    /**
+     * This uses the Depth First Search method of iterating a graph using a stack (with recursion).
+     * <p>
+     * The advantage of using a stack here is that inserting and removing is done in O(1), which are the only
+     * two operations I need here.
+     */
     private void findBestCombinationRecursively(List<Item> allItems, int start, Stack<Item> combination) {
         if (isValidCombination(combination, weightLimit)) {
             if (bestFit.isEmpty()) {

@@ -14,6 +14,7 @@ public class StandardFileParser implements FileParser {
     public List<UseCase> parse(String fileName) throws FileNotFoundException, InvalidFileFormatException {
         List<UseCase> useCases = new ArrayList<>();
 
+        // I'm using try with resources, so the scanner is closed properly (scanner.close() is called in any case).
         try (Scanner scanner = new Scanner(getFile(fileName))) {
             while (scanner.hasNextLine()) {
                 useCases.add(parseLine(scanner.nextLine()));
@@ -62,7 +63,7 @@ public class StandardFileParser implements FileParser {
             throw new InvalidFileFormatException();
         }
 
-        // Remove the start and end parenthesis
+        // Remove the start and end parenthesis.
         rawItem = rawItem.substring(1, rawItem.length() - 1);
 
         String[] itemData = rawItem.split(",");
@@ -72,7 +73,7 @@ public class StandardFileParser implements FileParser {
             throw new InvalidFileFormatException();
         }
 
-        // Remove the EURO sign at the beginning of the cost
+        // Remove the EURO sign at the beginning of the cost.
         String rawCost = itemData[2].substring(1);
 
         return new Item(Integer.valueOf(itemData[0]), Double.valueOf(itemData[1]), Integer.valueOf(rawCost));
