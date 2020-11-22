@@ -1,17 +1,27 @@
 package com.bogdanguranda.deliverypackageoptimizer.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Package {
-    private Long weightLimit;
-    private List<Item> items; // TODO: decide which data structure is best to use here
+    private Double weightLimit;
+    private List<Item> items = new ArrayList<>();
 
-    public Long getWeightLimit() {
+    public Package() {
+
+    }
+
+    public Package(Double weightLimit, List<Item> items) {
+        this.weightLimit = weightLimit;
+        this.items = items;
+    }
+
+    public Double getWeightLimit() {
         return weightLimit;
     }
 
-    public void setWeightLimit(Long weightLimit) {
+    public void setWeightLimit(Double weightLimit) {
         this.weightLimit = weightLimit;
     }
 
@@ -24,12 +34,16 @@ public class Package {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Package aPackage = (Package) o;
-        return weightLimit.equals(aPackage.weightLimit) &&
-                Objects.equals(items, aPackage.items);
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        Package otherPackage = (Package) other;
+        return weightLimit.equals(otherPackage.weightLimit) &&
+                Objects.equals(items, otherPackage.items);
     }
 
     @Override

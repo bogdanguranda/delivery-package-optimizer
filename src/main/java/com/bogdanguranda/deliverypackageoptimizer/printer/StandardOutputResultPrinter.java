@@ -5,7 +5,7 @@ import com.bogdanguranda.deliverypackageoptimizer.model.Package;
 
 import java.util.List;
 
-public class DefaultResultPrinter implements ResultPrinter {
+public class StandardOutputResultPrinter implements ResultPrinter {
 
     /**
      * Prints the resulted optimized package to the standard output.
@@ -19,7 +19,7 @@ public class DefaultResultPrinter implements ResultPrinter {
         } else {
             List<Item> items = resultPackage.getItems();
             for (int i = 0; i < items.size() - 1; i++) {
-                System.out.print(items.get(i).getId() + ", ");
+                System.out.print(items.get(i).getId() + ",");
             }
             System.out.println(items.get(items.size() - 1).getId());
         }

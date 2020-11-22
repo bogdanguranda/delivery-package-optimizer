@@ -1,4 +1,4 @@
-package com.bogdanguranda.deliverypackageoptimizer.constraints;
+package com.bogdanguranda.deliverypackageoptimizer.validator;
 
 import com.bogdanguranda.deliverypackageoptimizer.exceptions.ConstraintViolation;
 import com.bogdanguranda.deliverypackageoptimizer.parser.UseCase;

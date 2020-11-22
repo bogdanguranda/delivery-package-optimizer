@@ -1,8 +1,7 @@
 package com.bogdanguranda.deliverypackageoptimizer.exceptions;
 
-public class InvalidFileFormatException extends Exception {
-    
-    public InvalidFileFormatException(String message, Throwable cause) {
-        super(message, cause);
+public class InvalidFileContentException extends Exception {
+
+    public InvalidFileContentException() {
     }
 }

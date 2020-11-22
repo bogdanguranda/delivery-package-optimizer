@@ -3,31 +3,41 @@ package com.bogdanguranda.deliverypackageoptimizer.model;
 import java.util.Objects;
 
 public class Item {
-    private Long id;
-    private Long weight;
-    private Long cost;
+    private Integer id;
+    private Double weight;
+    private Integer cost;
 
-    public Long getId() {
+    public Item() {
+
+    }
+
+    public Item(Integer id, Double weight, Integer cost) {
+        this.id = id;
+        this.weight = weight;
+        this.cost = cost;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(Long weight) {
+    public void setWeight(Double weight) {
         this.weight = weight;
     }
 
-    public Long getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(Long cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 

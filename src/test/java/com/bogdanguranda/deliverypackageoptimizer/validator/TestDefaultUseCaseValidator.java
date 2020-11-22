@@ -1,4 +1,4 @@
-package com.bogdanguranda.deliverypackageoptimizer.constraints;
+package com.bogdanguranda.deliverypackageoptimizer.validator;
 
 import com.bogdanguranda.deliverypackageoptimizer.exceptions.ConstraintViolation;
 import com.bogdanguranda.deliverypackageoptimizer.model.Item;
@@ -6,6 +6,7 @@ import com.bogdanguranda.deliverypackageoptimizer.parser.UseCase;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestDefaultUseCaseValidator {
@@ -28,7 +29,7 @@ public class TestDefaultUseCaseValidator {
         List<UseCase> useCases = new ArrayList<>();
         List<Item> items1 = new ArrayList<>();
         items1.add(new Item(1, 2.0, 30));
-        useCases.add(new UseCase(101, items1));
+        useCases.add(new UseCase(101.0, items1));
         useCaseValidator.validate(useCases);
     }
 
@@ -38,8 +39,13 @@ public class TestDefaultUseCaseValidator {
     @Test(expected = ConstraintViolation.class)
     public void testWhenMoreThan15ItemsThenViolationIsThrown() throws ConstraintViolation {
         List<UseCase> useCases = new ArrayList<>();
-        List<Item> items1 = new ArrayList<>(16);
-        useCases.add(new UseCase(80, items1));
+        List<Item> items1 = Arrays.asList(
+                new Item(1, 2.0, 3), new Item(1, 2.0, 3), new Item(1, 2.0, 3), new Item(1, 2.0, 3), new Item(1, 2.0, 3),
+                new Item(1, 2.0, 3), new Item(1, 2.0, 3), new Item(1, 2.0, 3), new Item(1, 2.0, 3), new Item(1, 2.0, 3),
+                new Item(1, 2.0, 3), new Item(1, 2.0, 3), new Item(1, 2.0, 3), new Item(1, 2.0, 3), new Item(1, 2.0, 3),
+                new Item(1, 2.0, 3));
+        System.out.println(items1.size());
+        useCases.add(new UseCase(80.0, items1));
         useCaseValidator.validate(useCases);
     }
 
@@ -51,7 +57,7 @@ public class TestDefaultUseCaseValidator {
         List<UseCase> useCases = new ArrayList<>();
         List<Item> items1 = new ArrayList<>();
         items1.add(new Item(1, 100.01, 30));
-        useCases.add(new UseCase(80, items1));
+        useCases.add(new UseCase(80.0, items1));
         useCaseValidator.validate(useCases);
     }
 
@@ -63,7 +69,7 @@ public class TestDefaultUseCaseValidator {
         List<UseCase> useCases = new ArrayList<>();
         List<Item> items1 = new ArrayList<>();
         items1.add(new Item(1, 2.0, 101));
-        useCases.add(new UseCase(80, items1));
+        useCases.add(new UseCase(80.0, items1));
         useCaseValidator.validate(useCases);
     }
 }
