@@ -4,7 +4,7 @@
 * [About the Project](#about-the-project)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+  * [How to run](#how-to-run)
 * [Usage](#usage)
 * [Contributing](#contributing)
 * [License](#license)
@@ -26,7 +26,7 @@ To run this program or contribute follow the steps bellow.
 * Java 8
 * Maven (if you want to build it yourself)
 
-## Installation
+## How to run
 
 #### 1. Use already built `.jar`:
 - go to this repo's [Releases](https://github.com/bogdanguranda/delivery-package-optimizer/releases) and download the latest `.jar` file
